@@ -1,0 +1,35 @@
+{% extends 'auth.html' %}
+
+{% block authContent %}
+
+<div id="login-panel" class="auth-panel">
+
+    <header class="auth-panel-header">
+        <h1>Sign in</h1>
+        <p>New user? <a href="/registration">Create an account</a></p>
+    </header>
+                    
+    <!-- <p id="login-form-error" class="form-error"></p> -->
+                    
+    <form action="/login/" method="POST">
+        
+        {% csrf_token %}          
+        
+        <div id="user-email-input-container" class="form-input">
+            <input type="text" id="user-email" class="text-input" name="userEmail" placeholder="Email address" value="" />
+        </div>
+                    
+        <div class="form-input">
+            <input type="password" id="user-pass" class="pass-input" name="userPass" placeholder="Password" value="" />
+            <input type="button" class="show-hide-btn hidden" id="user-pass-toggle" />
+        </div>
+                    
+        <input type="submit" id="login-submit-btn" class="auth-form-submit-btn" value="Sign in">
+                    
+    </form>
+                    
+    <p>Forgot password? <a href="/password-reset">Reset password</a></p>
+                    
+</div>
+
+{% endblock %}

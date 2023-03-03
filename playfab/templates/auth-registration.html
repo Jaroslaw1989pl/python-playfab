@@ -1,0 +1,55 @@
+{% extends 'auth.html' %}
+
+{% block authContent %}
+
+<div id="registration-panel" class="auth-panel">
+
+    <header class="auth-panel-header">
+        <h1>Create an account</h1>
+        <p>Already have an account? <a href="/login">Sign in</a></p>
+    </header>
+
+    <form action="/registration/" method="POST">
+
+        {% csrf_token %}
+
+        <div id="user-email-input-container" class="form-input">
+
+            {% if userEmailError %}
+                <p id="user-email-error" class="input-error">{{ userEmailError }}</p>
+            {% endif %}
+
+            <input type="text" id="user-email" class="text-input" name="userEmail" placeholder="Email address"
+                   value="{{ userEmail }}" />
+        </div>
+
+        <div id="pass-form-input" class="form-input">
+
+            {% if userPassError %}
+                <p id="user-pass-error" class="input-error">{{ userPassError }}</p>
+            {% endif %}
+
+            <input type="password" id="user-pass-new" class="pass-input" name="userPass" placeholder="Password"
+                   value="{{ userPass }}" />
+            <input type="button" class="show-hide-btn hidden" id="user-pass-toggle" />
+        </div>
+        <div id="pass-requirements-container"></div>
+
+        <div class="form-input">
+
+            {% if userPassConfError %}
+                <p id="user-pass-conf-error" class="input-error">{{ userPassConfError }}</p>
+            {% endif %}
+
+            <input type="password" id="user-pass-conf" class="pass-input" name="userPassConf" placeholder="Confirm password"
+                   value="{{ userPassConf }}" />
+            <input type="button" class="show-hide-btn hidden" id="user-pass-conf-toggle" />
+        </div>
+
+        <input type="submit" id="registration-submit-btn" class="auth-form-submit-btn" value="Sign up">
+
+    </form>
+
+</div>
+
+{% endblock %}
